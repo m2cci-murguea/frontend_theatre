@@ -1,9 +1,9 @@
 <template>
-
-  <div id="header">
-    <img src="../public/logo.png">
-    <h1>Header My theater</h1>
-  </div>
+  <nav class="navbar navbar-dark bg-primary">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1">MyTheater</span>
+    </div>
+  </nav>
 
   <div id="nav">
     <router-view :shows="shows"/>
@@ -36,3 +36,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .overview{
+    align-items: flex-end;
+  } 
+</style>

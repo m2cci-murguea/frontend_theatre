@@ -1,31 +1,35 @@
 <template>
     <div class="wrapper">
         <h1>This is the show filter</h1>
-        <div class="filter-group">
-            <CheckFilter v-for="genre in genres" :key="genre" v-bind:title="genre" v-on:check-filter="checkFilter"/>               
-        </div> 
+        <div class="genre-filter">
+            <select id="test" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" @change="checkFilter($event)">
+                <option selected>Open this select menu</option>
+                <option v-for="(genre, index) in genres" :key="genre" :value="index">{{genre}}</option>
+            </select>
+        </div>
     </div>
 </template>
 
 <script>
 
-    import CheckFilter from '@/components/CheckFilter'
     import genres from '@/utils/genres.js'
 
     export default {
         name: 'ShowFilter',
         components: {
-            CheckFilter
         },
         data(){
             return {
-                genres
+                genres,
+                resultat:""
             }
         },
         methods:{
-            checkFilter(category, title, state){
-                this.$emit('check-filter', category, title, state);
-            }
+            checkFilter(event){
+                this.resultat = event.target.value.toLowerCase();
+                this.$emit('check-filter', 'genre', new String(this.resultat));
+                console.log("* " +typeof( new String(this.resultat)));
+            } 
         }
     }
 </script>

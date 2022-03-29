@@ -1,10 +1,10 @@
 <template>
   <div id="overview">
     <div id="showList">
-      <ShowList :shows="shows" :genre="genre" :time="time"/>
+      <ShowList :shows="shows"/>
     </div>
     <div id="showFilter">
-        <ShowFilter v-on:check-filter="checkFilter"/>
+      <ShowFilter v-on:check-filter="checkFilter"/>
     </div>
   </div>
 
@@ -17,29 +17,23 @@ import ShowFilter from '@/components/ShowFilter.vue';
 export default {
   name: 'App',
   props:['shows'],
+  data(){
+    return{
+      genre: new String("test")
+    }
+  },
   components: {
     ShowList,
     ShowFilter
   },
-  data(){
-    return{
-        genre: [],
-        time: []
-    }
-  },
   methods:{
-    checkFilter(category, title, checked){
+    checkFilter(category, title){
       let data = this.$data;
-      if (checked) {
-        data[category].push(title);
-      } else {
-        let index = data[category].indexOf(title);
-        if (index > -1) {
-          data[category].splice(index, 1);
-        }
-      }
+      data[category] = title;
+      console.log(category, data[category],title);
+      console.log(this.genre);
     }
-  },
+  }
 }
 </script>
 

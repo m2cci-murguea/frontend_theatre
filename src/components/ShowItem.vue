@@ -5,6 +5,7 @@
             <!--
             <img v-bind:src="show.Poster">
             -->
+            <img :src="require('@/assets/paradisesquare.jpg')">
         </div>
         <div class="show-col-right">      
             <router-link class="link" v-bind:to="{ name:'detail', params: {id: show.id}}">
